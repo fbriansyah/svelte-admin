@@ -7,8 +7,8 @@
     background-color: #f9f9f9;
     border-top: 1px solid #c0c0c0;
     width: 100%;
-    height:45px;
-    margin-top: 20px;
+    height:4.5rem;
+    margin-top: auto;
     display: flex;
     justify-content: center;
     align-items: center;

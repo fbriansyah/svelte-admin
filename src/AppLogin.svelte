@@ -32,6 +32,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    height: 35rem;
     background-color: #f9f9f9;
     padding-top: 1.8rem;
   }
@@ -43,7 +44,6 @@
     flex-direction: column;
     align-items: center;
     background-color: #fff;
-    max-height: 370px;
     border: 1px solid #d9d9d9;
     border-top: 5px solid #4d7496;
   }

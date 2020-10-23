@@ -1,6 +1,5 @@
 <script>
   import InputWithIcon from "../UI/InputWithIcon.svelte";
-  import Captcha from "../UI/Captcha.svelte";
   import Button from "../UI/Button.svelte";
   import {createEventDispatcher} from 'svelte';
 
@@ -9,7 +8,6 @@
   export let formState = {
     username: '',
     password: '',
-    captcha: '',
   };
 
   function onsubmit() {
@@ -18,7 +16,7 @@
 </script>
 <style>
 	form {
-		width: 270px;
+		width: 27rem;
 	}
 </style>
 <form on:submit|preventDefault={onsubmit}>
@@ -35,12 +33,5 @@
     type="password"
     on:input
     value={formState.password} />
-  <Captcha on:refresh />
-  <InputWithIcon
-    placeholder="Kode Verifikasi"
-    name="captcha"
-    icon="book"
-    on:input
-    value={formState.captcha} />
   <Button text="Login" type="submit" on:click={onsubmit} />
 </form>
