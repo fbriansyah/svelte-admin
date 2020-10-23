@@ -9,10 +9,10 @@ export function login(username, password) {
       isLogin.set(true);
       error.set('');
     } else {
-      error.set('Password Salah');
+      error.set('Password atau Username salah');
     }
   } else {
-    error.set('Username Salah');
+    error.set('Username atau Password salah');
   }
 }
 
