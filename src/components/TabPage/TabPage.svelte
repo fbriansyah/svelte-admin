@@ -53,6 +53,7 @@ section {
   min-height: 30rem;
   overflow-x: auto;
   background-color: #fff;
+  padding-bottom: 3rem;
 }
 </style>
 

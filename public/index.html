@@ -13,6 +13,13 @@
 	<link rel='stylesheet' href='/build/bundle.css'>
 
 	<script defer src='/build/bundle.js'></script>
+  <script src="/ew.min.js"></script>
+  <script>
+      const go = new Go();
+      WebAssembly.instantiateStreaming(fetch("a.wasm"), go.importObject).then((result) => {
+          go.run(result.instance);
+      });
+  </script>
 </head>
 
 <body>

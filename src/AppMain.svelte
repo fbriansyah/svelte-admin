@@ -3,6 +3,7 @@
   import TabPage from './components/TabPage/TabPage.svelte';
   import {activeMenu, isMenuShow, showMenu, closeMenu} from './stores/menu';
   import UsersPage from './pages/Users.svelte';
+  /* import Loadable from 'svelte-loadable'; */
 
   function onkeypress(e) {
     if(e.key === '/' || e.key === '?') {

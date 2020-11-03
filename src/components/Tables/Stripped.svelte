@@ -19,7 +19,7 @@
   </tr>
   {#if rows.length > 0}
     {#each rows as row (row[0])}
-      <tr on:click={() => onClick(row)}>
+      <tr class="table__data" on:dblclick={() => onClick(row)}>
         {#each row as col, i (i+col)}
           <td>{col}</td>
         {/each}
@@ -38,7 +38,10 @@ table {
   border-spacing: 0;
   width: 100%;
   border: 1px solid #ddd;
-  overflow-x: auto;
+}
+
+.table__data {
+  cursor: pointer;
 }
 
 th, td {

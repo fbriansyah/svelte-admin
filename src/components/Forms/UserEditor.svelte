@@ -2,6 +2,7 @@
   import {createEventDispatcher} from 'svelte';
   import Input from '../UI/InputWithLabel.svelte';
   import Button from '../UI/Button.svelte';
+  import Select2 from '../UI/SearchableSelect.svelte';
 
   export let editData = {
     nik: '',
@@ -11,51 +12,71 @@
     role: ''
   }
 
+  const roleOptions = [
+    {name: 'Admin', value: 'admin'},
+    {name: 'User', value: 'user'},
+    {name: 'Treasury', value: 'treasury'}
+  ]
+
   const dispatch = createEventDispatcher();
 </script>
 
-<form>
-  <Input
-    label="NIK User"
-    name="nik"
-    value="{editData.nik}"
-    placeholder="Masukkan nik"/>
-  <Input
-    label="Nama User"
-    name="nama"
-    value="{editData.nama}"
-    placeholder="Masukkan nama"/>
-  <Input
-    label="Umur User"
-    name="umur"
-    value="{editData.umur}"
-    placeholder="Masukkan Umur"/>
-  <Input
-    label="Role User"
-    name="role"
-    value="{editData.role}"
-    placeholder="Masukkan role"/>
-  <div>
+<div class="container">
+  <form on:submit|preventDefault={() => dispatch('submit')}>
+    <Input
+      label="NIK User"
+      name="nik"
+      value="{editData.nik}"
+      on:input
+      placeholder="Masukkan nik"/>
+    <Input
+      label="Nama User"
+      name="nama"
+      on:input
+      value="{editData.nama}"
+      placeholder="Masukkan nama"/>
+    <Input
+      label="Umur User"
+      name="umur"
+      on:input
+      value="{editData.umur}"
+      placeholder="Masukkan Umur"/>
+    <Select2
+      label='Role User'
+      name='role'
+      on:select
+      value="{editData.role}"
+      options={roleOptions}
+      placeholder="Pilih salah satu" />
+  </form>
+  <div class="button__group">
     <Button
-      type="submit"
       text="Cancel"
+      on:click="{() => dispatch('cancel')}"
       color="secondary" />
     <Button
       text="Simpan"
       color="primary"
-      on:click="{() => dispatch('cancel')}"/>
+      type="submit"
+      on:click="{() => dispatch('submit')}"
+      />
   </div>
-</form>
+</div>
 
 <style>
   form {
-    width: 45rem;
     display: flex;
     flex-direction: column;
+    margin-bottom: 2rem;
+  }
+
+  .container {
+    width: 45rem;
+    height: 100%;
     padding-left: 1rem;
   }
 
-  div {
+  .button__group {
     margin-top: auto;
     display: flex;
     justify-content: space-between;

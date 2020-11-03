@@ -16,10 +16,10 @@
 
   const headers = ["NIK", "Username","Nama", "Umur", "Role"];
   const rows = [
-    ["01234567", "john", "John Doe", "25", "Admin"],
-    ["093123485", "admin", "Admin", 20, "Admin"],
-    ["839182390", 'jane', "Jane Doe", 21, "Admin"],
-    ["93182738", 'dane', "Dane Doo", 19, "Treasury"]
+    ["01234567", "john", "John Doe", "25", "admin"],
+    ["093123485", "admin", "Admin", 20, "admin"],
+    ["839182390", 'jane', "Jane Doe", 21, "admin"],
+    ["93182738", 'dane', "Dane Doo", 19, "treasury"]
   ]
 
   const rowClickHandler = (data) => {
@@ -32,6 +32,28 @@
     }
     editMode = true;
   }
+
+  const setEditData = (field, value) => {
+    editData = {
+      ...editData,
+      [field]: value
+    }
+  }
+
+  const oncancel = () => editMode = false;
+  const onInput = (e) => {
+    const field = e.target.name;
+    const value = e.target.value;
+    console.log(field, value);
+    setEditData(field, value);
+  }
+  const onSelect = e => {
+    const data = e.detail;
+    setEditData(data.field, data.value);
+  }
+  const onSubmit = () => {
+    console.log(editData);
+  }
 </script>
 
 <section transition:fade>
@@ -40,7 +62,12 @@
   </Typography>
   <Divider />
   {#if editMode}
-    <FormEditor {editData} />
+    <FormEditor
+      {editData}
+      on:select="{onSelect}"
+      on:input="{onInput}"
+      on:submit="{onSubmit}"
+      on:cancel={oncancel}/>
   {:else}
     <Table {headers} {rows} on:rowclick={rowClickHandler} />
   {/if}

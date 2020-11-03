@@ -9,8 +9,8 @@ export const listmenu = writable([
 ]);
 
 export const activeMenu = writable({
-  code: 'dashboard',
-  nama: 'Dashboard',
+  code: 'users',
+  nama: 'Users',
   isActive: true
 });
 

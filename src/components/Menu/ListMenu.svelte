@@ -22,6 +22,7 @@
     label="Nama Menu"
     name="filter"
     placeholder="masukkan nama menu"
+    focus
     value={filterValue}
     on:input="{(e) => filterValue = e.target.value.toLowerCase()}"/>
   {#each filteredMenu as menu (menu.code)}

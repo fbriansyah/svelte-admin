@@ -1,16 +1,43 @@
 <script>
+  import {createEventDispatcher} from 'svelte';
+
   export let name = 'input';
   export let value = '';
   export let label = '';
-  export let placeholder = '';
+  export let placeholder = 'Pilih salah satu';
   export let type = 'text';
   export let focus = false;
+  export let options = [];
+
+  const dispatch = createEventDispatcher();
+
+  function onSelect(value) {
+    dispatch('select', {
+      field: name,
+      value: value,
+    })
+    /* console.log('select', value) */
+  }
+
+  function onInput(e) {
+    const value = e.target.value.toLowerCase();
+    onSelect(value);
+  }
 </script>
 
-
 <div class="form__group field">
-  <input {type} {name} {focus} id="{name}" {placeholder} {value} on:input class="form__field">
+  <input {type} {name} {focus}
+    id="{name}" {placeholder} {value}
+    on:focus={() => onSelect('')}
+    on:input={onInput}
+    list="{name+'_list'}"
+    class="form__field">
   <label for="{name}" class="form__label">{label}</label>
+  <datalist id="{name+'_list'}">
+    {#each options as opt (opt.value)}
+      <option data-value={opt.value}>{opt.name}</option>
+    {/each}
+  </datalist>
 </div>
 
 <style lang="scss">
